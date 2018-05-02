@@ -1,0 +1,104 @@
+﻿<Page
+    x:Class="mediaPlayer.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:mediaPlayer"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="MainPage_Loaded">
+
+    <Page.Resources>
+        <Style x:Name="transportStyle"  TargetType="AppBarButton">
+            <Setter Property="Height" Value="45"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid x:Name="MainWindow">
+        <Grid.Background>
+            <ImageBrush ImageSource="Assets/background.jpg" Stretch="UniformToFill"></ImageBrush>
+        </Grid.Background>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="MediaWindow" Grid.Row="0" Background="{StaticResource SystemControlBaseHighAcrylicElementMediumBrush}">
+            <ContentControl x:Name="videoContainer"
+                            KeyUp="VideoContainerKeyUp" 
+                            KeyDown="VideoContainerKeyDown"
+                            HorizontalContentAlignment="Center" 
+                            VerticalContentAlignment="Center">
+                <MediaElement Name="myMediaPlayer"
+                            Source="Assets/Video/video.mp4"
+                            Volume="0.5"
+                            MediaOpened="MyMediaOpened"
+                            CurrentStateChanged="MyMediaCurrentStateChanged"
+                            MediaEnded="MyMediaEnded"
+                            VolumeChanged="VolumeChange"
+                            AutoPlay="False">
+                </MediaElement>
+            </ContentControl>
+            <Ellipse x:Name="Cover" Height="400" Width="400" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <Ellipse.RenderTransform>
+                    <CompositeTransform></CompositeTransform>
+                </Ellipse.RenderTransform>
+                <Ellipse.Resources>
+                    <Storyboard x:Name="RotateCover" RepeatBehavior="Forever">
+                        <DoubleAnimation Duration="0:0:20" To="360" Storyboard.TargetName="Cover"
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)">
+                        </DoubleAnimation>
+                    </Storyboard>
+                </Ellipse.Resources>
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="picture" ImageSource="Assets/cover.jpg"></ImageBrush>
+                </Ellipse.Fill>
+            </Ellipse>
+        </Grid>
+
+        <Grid Name="TransportControlsPanel" Grid.Row="1" Background="Gray"
+              HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Slider x:Name="timelineSlider" Grid.Row="0" Margin="10,0" VerticalAlignment="Center"></Slider>
+
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <CommandBar  Background="Gray" Grid.Row="1">
+                    <AppBarButton Icon="Play" x:Name="Play" Click="MdeiaPlay"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Pause" x:Name="Pause" Click="MediaPause"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Stop" x:Name="Stop" Click="MediaStop"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Back" x:Name="Back" Click="MediaBack"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Forward" x:Name="Forward" Click="MediaForward"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="FullScreen" x:Name="FullScreen" Click="MediaFullScreen"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Save" x:Name="Select" Click="MediaSelect"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                    <AppBarButton Icon="Volume" x:Name="Mute" Click="MediaMute"
+                                  Style="{StaticResource transportStyle}">
+                    </AppBarButton>
+                </CommandBar>
+                <Slider x:Name="volumeslider" Grid.Row="1" Width="100" VerticalAlignment="Center" Margin="0,5,10,0"
+                        Maximum="1" Minimum="0" StepFrequency="0.1" Value="{x:Bind myMediaPlayer.Volume, Mode=TwoWay}">
+                </Slider>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,71 @@
+﻿<Page
+    x:Class="DailyQuery.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:DailyQuery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid>
+        <!--Main Page-->
+        <Grid>
+            <Grid.Background>
+                <ImageBrush x:Name="back" ImageSource="Assets/background.jpg" Opacity="0.7" Stretch="UniformToFill"/>
+            </Grid.Background>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Margin="0, 30, 0, 0" 
+                       Text="Query" TextAlignment="Center" FontWeight="Bold" FontSize="45"></TextBlock>
+            
+            <!--Weather Grid-->
+            <Grid x:Name="Detail_Part" Grid.Column="0" Grid.Row="1">
+                <StackPanel Height="500" Width="250" Margin="0, 0, 110, 50">
+                    <TextBlock Text="天气查询" TextAlignment="Center" FontSize="25"></TextBlock>
+                    <Rectangle x:Name="Photo" Width="100" Height="100" RadiusX="150" RadiusY="150" 
+                                VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Assets/Weather.jpg">
+                            </ImageBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBox x:Name="City" Header="城市" Height="60" TextWrapping="Wrap"/>
+                    <TextBox x:Name="Weather" Header="天气" Height="200" TextWrapping="Wrap"/>
+                    <RelativePanel Margin="0,20,0,0">
+                        <Button x:Name="Search" Content="Search" Click="GetWeather"/>
+                        <Button x:Name="Cancel" Content="Cancel" RelativePanel.AlignRightWithPanel="True" Click="Rest" />
+                    </RelativePanel>
+                </StackPanel>
+            </Grid>
+
+            <!--Weather Grid-->
+            <Grid x:Name="IP_Part" Grid.Column="1" Grid.Row="1">
+                <StackPanel Height="500" Width="250" Margin="120, 0, 0, 50">
+                    <TextBlock Text="IP查询" TextAlignment="Center" FontSize="25"></TextBlock>
+                    <Rectangle x:Name="Picture" Width="100" Height="100" RadiusX="150" RadiusY="150" 
+                                VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Rectangle.Fill>
+                            <ImageBrush ImageSource="Assets/IP.jpg">
+                            </ImageBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <TextBox x:Name="IP" Header="IP" Height="60" TextWrapping="Wrap" />
+                    <TextBox x:Name="Location" Header="定位" Height="200" TextWrapping="Wrap" />
+                    <RelativePanel Margin="0,20,0,0">
+                        <Button x:Name="IPSearch" Content="Search" Click="GetIP" />
+                        <Button x:Name="IPCancel" Content="Cancel" RelativePanel.AlignRightWithPanel="True" Click="IPRest" />
+                    </RelativePanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        </Grid>
+</Page>

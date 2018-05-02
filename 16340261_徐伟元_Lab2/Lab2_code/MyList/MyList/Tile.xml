@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<tile>
+  <visual branding="nameAndLogo" displayName="MyList">
+
+    <binding template="TileSmall" >
+      <image placement="background" src="Assets/background.jpg" />
+      <text  hint-style="caption" hint-align="center" >我是标题</text>
+      <text></text>
+    </binding>
+
+    <binding template="TileMedium">
+      <image  placement="background" src="Assets/background.jpg"  />
+      <group>
+        <subgroup>
+          <text  hint-style="caption" hint-align="center" >我是标题</text>
+          <text  hint-style="captionsubtle" hint-align="center" hint-wrap="true">我是内容</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileWide"  displayName="MyList">
+      <image placement="background" src="Assets/background.jpg"  />
+      <group>
+        <subgroup>
+          <image  hint-align="stretch"  src="Assets/photo.jpg" />
+        </subgroup>
+        <subgroup>
+          <text hint-style="caption" hint-align="center">我是标题</text>
+          <text hint-style="captionsubtle" hint-align="center" hint-wrap="true">我是内容</text>
+        </subgroup>
+      </group>
+    </binding>
+
+    <binding template="TileLarge"  displayName="MyList">
+      <image src="Assets/background1.jpg" placement="background"/>
+      <text hint-style="caption" hint-align="center">我是标题</text>
+      <text hint-style="captionsubtle" hint-align="center" hint-wrap="true">我是内容</text>
+    </binding>
+
+  </visual>
+</tile>
